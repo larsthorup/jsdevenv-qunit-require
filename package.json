@@ -1,0 +1,16 @@
+{
+    "name": "jsdevenv-qunit-require",
+    "version": "0.1.1-1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/larsthorup/jsdevenv-qunit-require.git"
+    },
+    "description": "JavaScript project with QUnit and RequireJS",
+    "author": "Lars Thorup <lars@zealake.com>",
+    "engine": "node 1.1.x",
+    "devDependencies": {
+        "grunt-cli": "0.1.6",
+        "grunt": "~0.4.2",
+        "grunt-contrib-jshint": "~0.8.0"
+    }
+}
