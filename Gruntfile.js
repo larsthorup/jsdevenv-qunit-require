@@ -8,11 +8,11 @@ module.exports = function (grunt) {
     };
 
     // convenience
-    grunt.registerTask('default', ['lint']);
-    grunt.registerTask('all', ['lint']);
+    grunt.registerTask('default', ['lint', 'test']);
+    grunt.registerTask('all', ['lint', 'test']);
 
     // continuous integration
-    grunt.registerTask('ci', ['lint']);
+    grunt.registerTask('ci', ['lint', 'test']);
 
 
     // lint
@@ -30,6 +30,42 @@ module.exports = function (grunt) {
         ]
     };
     grunt.registerTask('lint', 'jshint');
+
+
+    // connect
+    grunt.registerTask('wait', 'keep running until terminated', function () {
+        /* var done =*/
+        this.async();
+    });
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    gruntConfig.connect = {};
+    gruntConfig.connect.src = {
+        options: {
+            port: 8082,
+            base: 'src'
+        }
+    };
+
+
+    // test
+    grunt.loadNpmTasks('grunt-qunit-junit');
+    gruntConfig.qunit_junit = {
+        options: {
+            dest: 'output/testresults'
+        }
+    };
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    gruntConfig.qunit = {};
+    gruntConfig.qunit.src = [
+        'src/test/all.test.html'
+    ];
+    gruntConfig.qunit.connect = {
+        options: {
+            urls: ['http://localhost:8082/test/all.test.html']
+        }
+    };
+    // grunt.registerTask('test', ['connect:src', 'qunit_junit', 'qunit:connect']);
+    grunt.registerTask('test', ['qunit_junit', 'qunit:src']);
 
 
     // grunt
