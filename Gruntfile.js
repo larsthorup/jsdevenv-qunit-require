@@ -24,7 +24,9 @@ module.exports = function (grunt) {
             maxparams: 3, maxdepth: 2, maxstatements: 50},
         all: [
             'Gruntfile.js',
-            'src/js/**/*.js'
+            'src/**/*.js',
+            '!src/lib/**/*',
+            '!src/test/lib/**/*'
         ]
     };
     grunt.registerTask('lint', 'jshint');
