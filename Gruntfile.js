@@ -8,11 +8,11 @@ module.exports = function (grunt) {
     };
 
     // convenience
-    grunt.registerTask('default', ['lint', 'test']);
-    grunt.registerTask('all', ['lint', 'test']);
+    grunt.registerTask('default', ['lint', 'test', 'cover']);
+    grunt.registerTask('all', ['lint', 'test', 'cover']);
 
     // continuous integration
-    grunt.registerTask('ci', ['lint', 'test']);
+    grunt.registerTask('ci', ['lint', 'test', 'cover']);
 
 
     // lint
@@ -66,6 +66,17 @@ module.exports = function (grunt) {
     };
     // grunt.registerTask('test', ['connect:src', 'qunit_junit', 'qunit:connect']);
     grunt.registerTask('test', ['qunit_junit', 'qunit:src']);
+
+
+    // coverage
+    grunt.loadNpmTasks('grunt-karma');
+    gruntConfig.karma = {
+        cover: {
+            configFile: 'karma.conf.js',
+            singleRun: true
+        }
+    };
+    grunt.registerTask('cover', ['karma:cover']);
 
 
     // grunt
