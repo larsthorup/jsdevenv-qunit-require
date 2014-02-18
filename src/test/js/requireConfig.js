@@ -3,12 +3,12 @@ require.config({
     baseUrl: '../js',
 
     paths: {
-        jquery: '../lib/jquery',
+        // jquery: '../lib/jquery',
         sinon: '../test/lib/sinon'
     },
 
     shim: {
-        jquery : { exports: '$'},
+        // jquery : { exports: '$'},
         sinon: { exports: 'sinon'}
     }
 });

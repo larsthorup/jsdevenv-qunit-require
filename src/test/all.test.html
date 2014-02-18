@@ -4,20 +4,23 @@
     <meta charset="utf-8">
     <title>jsdevenv-qunit-require tests</title>
     <link rel="stylesheet" href="lib/qunit.css">
-    <script data-main="js/requireConfig" type="text/javascript" src="../lib/require.js"></script>
+    <script data-main="../js/requireConfig" type="text/javascript" src="../lib/require.js"></script>
     <script src="lib/qunit.js"></script>
     <script src="lib/blanket.min.js" data-cover-never="['sinon.js']"></script>
     <script type="text/javascript">
         QUnit.config.autostart = false;
         var testModules = [
-            './js/util/random.test.js',
-            './js/controller.test.js'
+            '../test/js/util/random.test.js',
+            '../test/js/main.test.js',
+            '../test/js/controller.test.js'
         ];
         window.addEventListener("load", function onLoad() {
             setTimeout(function () {
-                require(testModules, function () {
-                    QUnit.start();
-                });
+                require(['../test/js/requireConfig'], function () {
+                    require(testModules, function () {
+                        QUnit.start();
+                    });
+                })
             }, 10);
             window.removeEventListener("load", onLoad, true);
         }, true);
